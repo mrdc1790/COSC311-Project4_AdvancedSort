@@ -1,45 +1,31 @@
 public class QuickSort {
-    public static void QuickSort(int ar[], int left, int right)
-    {
-        if (left >= right)
-        {
-            return;
-        }
-        int pivot = ar[left];
-        int leftPtr = left+1;
-        int rightPtr = right;
-        while(leftPtr <= rightPtr)
-        {
-            while(leftPtr <= right && ar[leftPtr] <= pivot)
-            {
-                leftPtr++;
-            }
-            while(rightPtr > left && ar[rightPtr] > pivot)
-            {
-                rightPtr--;
-            }
-            if (leftPtr < rightPtr)
-            {
-                int temp = ar[leftPtr];
-                ar[leftPtr] = ar[rightPtr];
-                ar[rightPtr] = temp;
-                leftPtr++;
-                rightPtr--;
+
+    private static Integer partition(Integer arr[], int begin, int end) {
+        int pivot = arr[end];
+        int i = (begin - 1);
+
+        for (int j = begin; j < end; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+
+                int swapTemp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = swapTemp;
             }
         }
-        int temp = ar[left];
-        ar[left] = ar[rightPtr];
-        ar[rightPtr] = temp;
-        QuickSort(ar, left, rightPtr-1);
-        QuickSort(ar, leftPtr, right);
+
+        int swapTemp = arr[i + 1];
+        arr[i + 1] = arr[end];
+        arr[end] = swapTemp;
+        return i + 1;
     }
-    public static void main(String args[])
-    {
-        int a[]={12,4,567,7,99,21,675,888,25,25,31,899};
-        int i;
-        QuickSort(a,0,a.length-1);
-        System.out.println("******Sorted Array*******");
-        for(i=0;i<a.length;i++)
-            System.out.println(a[i]);
+
+    public static void quickSort(Integer arr[], int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(arr, begin, end);
+
+            quickSort(arr, begin, partitionIndex - 1);
+            quickSort(arr, partitionIndex + 1, end);
+        }
     }
 }
