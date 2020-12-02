@@ -49,9 +49,9 @@ public class Driver {
                     case 0:
                         QuickSort.quickSort(numbers, 0, numbers.length-1);
                     case 1:
-                        //MergeSort.mergeSort(numbers, 0, numbers.length-1);
+                        MergeSort.mergeSort(numbers, 0, numbers.length-1);
                     case 2:
-                        //HeapSort.heapSort(numbers, 0, numbers.length-1);
+                        HeapSort.sort(numbers);
                 }
                 endTime = System.currentTimeMillis();
                 System.out.println(allSorts[loopNum]+" "+allData[i]+": That took " + (endTime - startTime) + " milliseconds");
